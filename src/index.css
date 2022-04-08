@@ -6,8 +6,90 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+input,input:focus { 
+    outline: none !important;
+    border-color:none;
+    box-shadow: none;
+	border:none;
+}
+textarea:focus { 
+    outline: none !important;
+    border-color:none;
+    box-shadow: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+:root {
+  --main-color: rgb(41, 41, 41);
+  --main-font-size:14px;
+}
+.primary-table{
+  position:relative;
+border-collapse: collapse;
+
+}
+.tester {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #6a6a6a82;
+	z-index: 1;
+}
+.primary-table th {
+	border-right: 1px solid #969696;
+	border-collapse: collapse !important;
+	padding: 0px 4px;
+	background: #e6e5e5;
+	border-bottom: 1px solid #969696;
+	border-left: 1px solid #fcf9f9;
+	border-top: 1px solid #fff;
+	text-transform: uppercase;
+	font-weight: 400;
+  color: var(--main-bg-color);
+  font-size: var(--main-font-size);
+}
+.primary-table td{
+border:1px solid #ededed;
+font-size: var(--main-font-size);
+
+}
+.secondary-table th{
+  border:none;
+}
+.secondary-table, .secondary-table th, .secondary-table tr, .secondary-table td {
+	border: 1px solid lightgray;
+	border-collapse: collapse !important;
+}
+.secondary-table th{
+  padding:4px 10px; 
+  background: #f1f0f0;
+  text-transform: uppercase;
+}
+.secondary-table  {
+	margin-left: 28px;
+	width: calc(100% - 32px);
+	position: absolute;
+	background: white;
+	min-width: 800px;
+	border: 1px solid #000;
+	border-collapse: collapse;
+	box-shadow: 0px 0px 15px -31px #9f9c9c;
+	box-sizing: border-box;
+	margin: 10p;
+	box-shadow: 0 0 3px black;
+	box-shadow: 0px 32px 40px -8px rgb(0, 0, 0);
+  z-index: 2;
+
+}
+
+.active-row {
+	font-weight: bold;
+	color: #d9553f;
+	background: white;
+	position: relative;
+  z-index: 2;
 }
