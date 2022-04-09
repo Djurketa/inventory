@@ -3,13 +3,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import zaglavlje from "./slices/zaglavljeSlice";
 // import surveysReducer from "../slices/surveysSlice";
 export default configureStore(
-	{
-		reducer: {
-			// aleksa: [],
-			zaglavlje: zaglavlje,
-			// surveys: surveysReducer,
-			// [surveyApi.reducerPath]: surveyApi.reducer,
-		},
-	},
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  {
+    reducer: {
+      app: [{ user_id: 1231, main_ou_id: 100, ou_id: 200 }],
+      zaglavlje: zaglavlje,
+      // surveys: surveysReducer,
+      // [surveyApi.reducerPath]: surveyApi.reducer,
+    },
+  },
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
