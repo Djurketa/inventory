@@ -2,7 +2,7 @@
   {
     "id": 1,
     "proizvod": "Nektar",
-    "Dobaljač": "Nektar Doo",
+    "Dobaljač": "1",
     "Cijena": "1",
     "PDV": "17",
     "Ukupna cijena ": "1.17",
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "proizvod": "Crni Djorde",
-    "Dobaljač": "Nektar Doo",
+    "Dobaljač": "1",
     "Cijena": "2",
     "PDV": "17",
     "Ukupna cijena ": "2.34",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "proizvod": "Jelen",
-    "Dobaljač": "Jelen doo",
+    "Dobaljač": "2",
     "Cijena": "1",
     "PDV": "17",
     "Ukupna cijena ": "1.17",
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "proizvod": "Jelen Grejp",
-    "Dobaljač": "Jelen doo",
+    "Dobaljač": "2",
     "Cijena": "1",
     "PDV": "17",
     "Ukupna cijena ": "1.17",
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "proizvod": "Tuborg",
-    "Dobaljač": "Nektar Doo",
+    "Dobaljač": "1",
     "Cijena": "1",
     "PDV": "17",
     "Ukupna cijena ": "1.17",
@@ -47,7 +47,7 @@
   {
     "id": 6,
     "proizvod": "Kozel",
-    "Dobaljač": "Nektar Doo",
+    "Dobaljač": "1",
     "Cijena": "1",
     "PDV": "17",
     "Ukupna cijena ": "1.17",
@@ -56,7 +56,7 @@
   {
     "id": 7,
     "proizvod": "Niksicko",
-    "Dobaljač": "Jelen doo",
+    "Dobaljač": "2",
     "Cijena": "1",
     "PDV": "17",
     "Ukupna cijena ": "1.17",

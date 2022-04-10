@@ -4,7 +4,10 @@ import { FormControlLabel } from "@mui/material/FormControlLabel";
 function DbTable({ tableName, dropdowns }) {
   const [tableData, setTableData] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
-
+  const list = [
+    { d: "nektar", r: 1 },
+    { d: "jelen", r: 2 },
+  ];
   useEffect(() => {
     fetch(`./${tableName}.json`)
       .then((response) => {
@@ -15,20 +18,7 @@ function DbTable({ tableName, dropdowns }) {
         setTableColumns(Object.getOwnPropertyNames(data[0]));
       });
   }, []);
-
-  function parseInput(row, column) {
-    return (
-      <input
-        column={column}
-        list={column}
-        id={row.id}
-        onChange={handleNameChange}
-        nama={row.id}
-        value={row[column]}
-      />
-    );
-  }
-  function handleNameChange(e) {
+  function handleInputChange(e) {
     const payload = {
       id: e.target.id,
       data: e.target.value,
@@ -42,13 +32,53 @@ function DbTable({ tableName, dropdowns }) {
     });
     setTableData(newState);
   }
+  function handleSelectChange(e) {}
+  function parseInput(row, column) {
+    if (column != "Dobaljač") {
+      return (
+        <input
+          column={column}
+          list={column}
+          id={row.id}
+          onChange={handleInputChange}
+          nama={row.id}
+          value={row[column]}
+        />
+      );
+    } else {
+      return (
+        <>
+          <input
+            type="hidden"
+            column={column}
+            id={row.id}
+            onChange={handleInputChange}
+            nama={row.id}
+            value={row[column]}
+          />
+          <input
+            column={column}
+            list={column}
+            id={row.id}
+            onChange={handleSelectChange}
+            nama={row.id}
+            value={
+              list.find((o) => {
+                return o.r == row[column];
+              }).d
+            }
+          />
+        </>
+      );
+    }
+  }
 
   return (
     <>
       <form action="">
         <datalist id="Dobaljač">
-          <option value="1">Nektar Doo</option>
-          <option value="1">Jelen Doo</option>
+          <option value="Nektar Doo">Nektar Doo</option>
+          <option value="Jelen Doo">Jelen Doo</option>
         </datalist>
         <table className="primary-table">
           <thead>
