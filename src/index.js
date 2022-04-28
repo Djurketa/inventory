@@ -1,19 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import store from "./components/redux/store";
+import store from "./redux/store.js";
 import { Provider } from "react-redux";
-import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import Zaglavelje from "./components/Zaglavlje";
-import DbTable from "./components/DbTable";
+import App from "./App";
+
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      {/* <Zaglavelje /> */}
-      <DbTable tableName={"items"} dropdowns={["Dobaljač"]} />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<Provider store={store}>
+			<Router>
+				<App />
+			</Router>
+		</Provider>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 // reportWebVitals(console.log);
