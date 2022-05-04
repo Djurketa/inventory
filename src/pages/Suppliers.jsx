@@ -1,7 +1,7 @@
 import React from "react";
 
-function index() {
+function Suppliers() {
 	return <div>dobaljvaci</div>;
 }
 
-export default index;
+export default Suppliers;

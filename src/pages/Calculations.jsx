@@ -1,7 +1,7 @@
 import React from "react";
 
-function index() {
+function Calculations() {
 	return <div>Kalkulacije</div>;
 }
 
-export default index;
+export default Calculations;

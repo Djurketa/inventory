@@ -1,7 +1,7 @@
 import React from "react";
 
-function index() {
+function Nomenclatures() {
 	return <div>Sifarnici</div>;
 }
 
-export default index;
+export default Nomenclatures;

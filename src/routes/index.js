@@ -1,13 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Portal from "../pages/portal";
-import Orders from "../pages/orders";
-import Invoice from "../pages/invoice";
-import Nomenclatures from "../pages/nomenclatures";
-import Reports from "../pages/reports";
-import Suppliers from "../pages/suppliers";
-import Mapping from "../pages/mapping";
-import Settings from "../pages/settings";
+import Portal from "../pages/Portal";
+import Orders from "../pages/Orders";
+import Invoice from "../pages/Invoice";
+import Nomenclatures from "../pages/Nomenclatures";
+import Reports from "../pages/Reports";
+import Suppliers from "../pages/Suppliers";
+import Mapping from "../pages/Mapping";
 function index() {
 	return (
 		<Routes>
@@ -18,7 +17,7 @@ function index() {
 			<Route exact path="/sifrarnici" element={<Nomenclatures />}></Route>
 			<Route exact path="/dobavljaci" element={<Suppliers />}></Route>
 			<Route exact path="/artikli" element={<Mapping />}></Route>
-			<Route exact path="/podesavanja" element={<Settings />}></Route>
+			{/* <Route exact path="/podesavanja" element={<Settings />}></Route> */}
 		</Routes>
 	);
 }

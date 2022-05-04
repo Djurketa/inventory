@@ -1,7 +1,7 @@
 import React from "react";
 
-function index() {
+function Portal() {
 	return <div>Portal</div>;
 }
 
-export default index;
+export default Portal;

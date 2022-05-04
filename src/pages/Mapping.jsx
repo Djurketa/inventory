@@ -1,7 +1,7 @@
 import React from "react";
 
-function index() {
+function Mapping() {
 	return <div>mapiranje</div>;
 }
 
-export default index;
+export default Mapping;

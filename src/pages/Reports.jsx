@@ -1,7 +1,7 @@
 import React from "react";
 
-function index() {
+function Reports() {
 	return <div>izvjestaji</div>;
 }
 
-export default index;
+export default Reports;

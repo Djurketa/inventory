@@ -1,7 +1,7 @@
 import React from "react";
 
-function index() {
+function Items() {
 	return <div>artikli</div>;
 }
 
-export default index;
+export default Items;
