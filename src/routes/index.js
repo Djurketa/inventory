@@ -7,6 +7,7 @@ import Nomenclatures from "../pages/Nomenclatures";
 import Reports from "../pages/Reports";
 import Suppliers from "../pages/Suppliers";
 import Mapping from "../pages/Mapping";
+import Supplier from "../pages/Supplier";
 function index() {
 	return (
 		<Routes>
@@ -17,6 +18,7 @@ function index() {
 			<Route exact path="/sifrarnici" element={<Nomenclatures />}></Route>
 			<Route exact path="/dobavljaci" element={<Suppliers />}></Route>
 			<Route exact path="/artikli" element={<Mapping />}></Route>
+			<Route exact path="/dobavljac/:supplierName" element={<Supplier />} />
 			{/* <Route exact path="/podesavanja" element={<Settings />}></Route> */}
 		</Routes>
 	);
