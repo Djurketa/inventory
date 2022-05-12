@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import suppliers from "../JSON/suppliers.json";
 
 export const nomenclaturesApi = createApi({
 	reducerPath: "nomenclaturesApi",
@@ -8,9 +7,12 @@ export const nomenclaturesApi = createApi({
 		getSuppliers: builder.query({
 			query: (data) => "suppliers", //id logovanog korisnika
 		}),
+		getItems: builder.query({
+			query: (data) => "items", //id logovanog korisnika
+		}),
 	}),
 });
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useGetSuppliersQuery } = nomenclaturesApi;
+export const { useGetSuppliersQuery, useGetItemsQuery } = nomenclaturesApi;

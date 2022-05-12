@@ -33,6 +33,9 @@ const path = require("path");
 app.get("/api/suppliers", (req, res) => {
 	res.sendFile(path.join(__dirname, "src/JSON", "suppliers.json"));
 });
+app.get("/api/items", (req, res) => {
+	res.sendFile(path.join(__dirname, "src/JSON", "items.json"));
+});
 app.listen(process.env.PORT || 1337, () => {
 	console.log("server is running ");
 });

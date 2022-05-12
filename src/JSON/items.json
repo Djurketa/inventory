@@ -1,0 +1,51 @@
+[
+    {
+        "id":"1",
+        "barcode":"123123123",
+        "name":"Aspirin 20mg tableta",
+        "price":"10",
+        "price_pdv":"11.70"
+    },
+    {
+        "id":"2",
+        "barcode":"877687688",
+        "name":"Paracetamol 10mg tableta",
+        "price":"20",
+        "price_pdv":"23.60"
+    },
+    {
+        "id":"3",
+        "barcode":"364367437",
+        "name":"Brufen 14mg tableta",
+        "price":"12",
+        "price_pdv":"14.04"
+    },
+    {
+        "id":"4",
+        "barcode":"783465366",
+        "name":"Diklofenak 5mg tableta",
+        "price":"5",
+        "price_pdv":"5.85"
+    },
+    {   
+        "id":"5",
+        "barcode":"876347373",
+        "name":"Bromazepan 20mg tableta",
+        "price":"9",
+        "price_pdv":"10.53"
+    },
+    {
+        "id":"6",
+        "barcode":"374734373",
+        "name":"Kafetin 10mg tableta",
+        "price":"16",
+        "price_pdv":"18.72"
+    },
+    {
+        "id":"7",
+        "barcode":"438774344",
+        "name":"Leksilijum 5mg tableta",
+        "price":"3",
+        "price_pdv":"3.51"
+    }
+]

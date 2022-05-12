@@ -9,8 +9,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import { useGetSuppliersQuery } from "../redux_api/nomenclatures";
-import { useSelector } from "react-redux";
-import store from "../redux/store";
 
 export default function Orders() {
 	const [fillteredSuppliers, setFillteredSuppliers] = useState("");
@@ -44,12 +42,15 @@ export default function Orders() {
 				onKeyUp={handleFilteredSuppliersKeyUp}
 				onChange={handleFilteredSuppliersChange}
 				size="small"
+				selectOnFocus
 				sx={{ m: 2, bgcolor: "white", width: 300 }}
-				disablePortal
-				id="combo-box-demo"
 				options={suppliersSelectList}
 				renderInput={(params) => (
-					<TextField {...params} label="Pretraga dobavljaca" />
+					<TextField
+						{...params}
+						variant="standard"
+						label="Pretraga dobavljaca"
+					/>
 				)}
 			/>
 			<Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "" }}>
