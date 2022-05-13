@@ -5,10 +5,10 @@ import { useLocation } from "react-router-dom";
 import { Autocomplete, TextField, LinearProgress } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ConstructionOutlined } from "@mui/icons-material";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import SaveIcon from "@mui/icons-material/Save";
 
 const columns = [
 	{ field: "id", headerName: "ID", width: 70 },
@@ -23,7 +23,7 @@ const columns = [
 	},
 	{ field: "qty", headerName: "Količina", width: 70 },
 	{ field: "total_price", headerName: "Ukupna cijena", width: 150 },
-	{ field: "total_pdv", headerName: "Ukupan PDV", width: 150 },
+	{ field: "total_with_pdv", headerName: "Ukupna sa PDV-om", width: 150 },
 
 	// {
 	// 	field: "fullName",
@@ -42,12 +42,11 @@ function Supplier({ state }) {
 	const [item, setItem] = useState();
 	const [items, setItems] = useState([]);
 	const [selectionModel, setSelectionModel] = useState([]);
-	const qtyRef = useRef("");
+	const [quantity, setQuantity] = useState({});
 	const { data, isFetching } = useGetItemsQuery();
 	if (isFetching) {
 		return <LinearProgress color="secondary" />;
 	}
-	// data from responce
 	const selectListItems = data;
 	const defaultProps = {
 		options: selectListItems,
@@ -62,50 +61,86 @@ function Supplier({ state }) {
 		}
 	}
 	function handleQuantityChange(event) {
-		console.log(event.target.value);
+		const value = event.target.value;
+		setQuantity({
+			qty: value,
+			total_price: value * item.price,
+			total_with_pdv: value * item.price_pdv,
+		});
 	}
 	function handleDeleteRowsClick(e) {
-		const filtered = item.filter(function (e) {
+		const filtered = items.filter(function (e) {
 			return this.indexOf(e.id) < 0;
 		}, selectionModel);
-		setItem(filtered);
+		setItems(filtered);
+	}
+	function handleAddClick(event) {
+		if (items.filter((e) => e.id === item.id).length == 0) {
+			setItems([...items, { ...item, ...quantity }]);
+			setItem({});
+			setQuantity({});
+		}
 	}
 
 	return (
 		<>
-			<Box sx={{ display: "flex" }}>
-				{JSON.stringify(item)}
+			<Box sx={{ display: "flex", m: 1, bgcolor: "white", ps: 1 }}>
 				<Autocomplete
 					{...defaultProps}
 					onChange={handleSelectListChange}
 					id="auto-complete"
 					autoComplete
 					size="small"
-					sx={{ m: 2, bgcolor: "white", width: 500, pl: 1 }}
+					sx={{ minWidth: 500, flex: 0.4 }}
 					renderInput={(params) => (
 						<>
 							<TextField
 								{...params}
 								label={supplierName + " - lista artikala"}
-								variant="standard"
+								varisant="standard"
 							/>
 						</>
 					)}
 				/>
 				<TextField
-					inputRef={(qtyRef) => qtyRef && qtyRef.focus()}
+					inputRef={(qtyRef) => qtyRef && qtyRef.focus() && item}
 					onChange={handleQuantityChange}
-					sx={{ m: 2, bgcolor: "white", width: 100, pl: 1 }}
+					sx={{ minWidth: 100, ml: 1, flex: 0.1 }}
 					id="standard-basic"
 					size="small"
 					label="Količina"
-					variant="standard"
+					type="number"
+					variasnt="standard"
+					onFocus={(event) => {
+						event.target.select();
+					}}
 				/>
+				<Box
+					sx={{
+						m: "auto 10px",
+						flex: 0.5,
+						display: "flex",
+						justifyContent: "space-between",
+					}}>
+					<Button
+						onClick={handleAddClick}
+						sx={{ width: 100 }}
+						variant="contained"
+						color="success"
+						startIcon={<AddBoxIcon />}
+						size="small">
+						Dodaj
+					</Button>
+					<Button
+						sx={{ width: 100 }}
+						variant="contained"
+						startIcon={<SaveIcon />}
+						size="small">
+						Naruči
+					</Button>
+				</Box>
 			</Box>
-			<Box sx={{ m: 2, p: 1, bgcolor: "white" }}>
-				{/* <Typography sx={{ m: 2 }} variant="button">
-					Izabrani artikli
-				</Typography> */}
+			<Box sx={{ m: 1, ps: 1, bsgcolor: "white" }}>
 				<Button
 					onClick={handleDeleteRowsClick}
 					// sx={{ ml: 10 }}
@@ -115,9 +150,9 @@ function Supplier({ state }) {
 					Obriši selektovane redove
 				</Button>
 			</Box>
-			<Box sx={{ m: 2, bgcolor: "white", height: "calc(100%  - 200px) " }}>
+			<Box sx={{ m: 1, bgcolor: "white", height: "calc(100%  - 200px) " }}>
 				<DataGrid
-					rows={item}
+					rows={items}
 					columns={columns}
 					pageSize={11}
 					rowsPerPageOptions={[11]}
