@@ -11,6 +11,7 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 import AirportShuttleIcon from "@mui/icons-material/AirportShuttle";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloudSyncIcon from "@mui/icons-material/CloudSync";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 
 export const mainListItems = (
@@ -70,6 +71,18 @@ export const secondaryListItems = (
 				<SettingsIcon />
 			</ListItemIcon>
 			<ListItemText primary="Podešavanja" />
+		</ListItemButton>
+		<ListItemButton
+			component={Link}
+			to=""
+			onClick={() => {
+				sessionStorage.clear();
+				window.location.reload();
+			}}>
+			<ListItemIcon>
+				<LogoutIcon />
+			</ListItemIcon>
+			<ListItemText primary="Odjava" />
 		</ListItemButton>
 	</React.Fragment>
 );

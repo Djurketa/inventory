@@ -9,11 +9,13 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import SaveIcon from "@mui/icons-material/Save";
+import { CustomFooterTotalComponent } from "../components/CustomFooterTotalComponent";
 
 const columns = [
 	{ field: "id", headerName: "ID", width: 70 },
 	{ field: "barcode", headerName: "Barcode", width: 150 },
 	{ field: "name", headerName: "Naziv", width: 300 },
+	{ field: "pack", headerName: "Pakovanje", width: 200 },
 	{ field: "price", headerName: "Cijena", width: 70 },
 	{
 		field: "price_pdv",
@@ -40,6 +42,7 @@ function Supplier({ state }) {
 	const { supplierName } = useParams();
 	const { supplierId } = useLocation().state;
 	const [item, setItem] = useState();
+	const [itemInputValue, setItemInputValue] = React.useState("");
 	const [items, setItems] = useState([]);
 	const [selectionModel, setSelectionModel] = useState([]);
 	const [quantity, setQuantity] = useState({});
@@ -51,22 +54,25 @@ function Supplier({ state }) {
 	const defaultProps = {
 		options: selectListItems,
 		getOptionLabel: (option) => option.name,
+		renderOption: (option) => (
+			<React.Fragment>
+				{console.log(option)}
+				<h1 key={option.key}>{option.key}</h1>
+			</React.Fragment>
+		),
 	};
 
-	function handleSelectListChange(event, value) {
-		if (value) {
-			if (items.filter((e) => e.id === value.id).length == 0) {
-				setItem(value);
-			}
-		}
+	function handleItemChange(event, value) {
+		// if (value) {
+		// if (items.filter((e) => e.id === value.id).length == 0) {
+		setItem(value);
+		setItemInputValue(value.name);
+		// }
+		// }
 	}
 	function handleQuantityChange(event) {
 		const value = event.target.value;
-		setQuantity({
-			qty: value,
-			total_price: value * item.price,
-			total_with_pdv: value * item.price_pdv,
-		});
+		setQuantity(value);
 	}
 	function handleDeleteRowsClick(e) {
 		const filtered = items.filter(function (e) {
@@ -75,10 +81,20 @@ function Supplier({ state }) {
 		setItems(filtered);
 	}
 	function handleAddClick(event) {
-		if (items.filter((e) => e.id === item.id).length == 0) {
-			setItems([...items, { ...item, ...quantity }]);
-			setItem({});
-			setQuantity({});
+		if (items.filter((e) => e.id === item.id).length == 0 && quantity) {
+			const qtyObj = {
+				qty: quantity,
+				total_price: parseFloat(quantity * item.price).toFixed(2),
+				total_with_pdv: parseFloat(quantity * item.price_pdv).toFixed(2),
+			};
+			if (items.filter((e) => e.id === item.id).length == 0) {
+				setItems([...items, { ...item, ...qtyObj }]);
+			}
+			setItemInputValue("");
+			setItem("");
+			setQuantity("");
+		} else {
+			alert("Artikal je već na listi");
 		}
 	}
 
@@ -87,7 +103,9 @@ function Supplier({ state }) {
 			<Box sx={{ display: "flex", m: 1, bgcolor: "white", ps: 1 }}>
 				<Autocomplete
 					{...defaultProps}
-					onChange={handleSelectListChange}
+					onChange={handleItemChange}
+					value={item}
+					inputValue={itemInputValue}
 					id="auto-complete"
 					autoComplete
 					size="small"
@@ -103,7 +121,12 @@ function Supplier({ state }) {
 					)}
 				/>
 				<TextField
-					inputRef={(qtyRef) => qtyRef && qtyRef.focus() && item}
+					value={quantity}
+					inputRef={(qtyRef) => {
+						if (item) {
+							qtyRef && qtyRef.focus();
+						}
+					}}
 					onChange={handleQuantityChange}
 					sx={{ minWidth: 100, ml: 1, flex: 0.1 }}
 					id="standard-basic"
@@ -140,7 +163,7 @@ function Supplier({ state }) {
 					</Button>
 				</Box>
 			</Box>
-			<Box sx={{ m: 1, ps: 1, bsgcolor: "white" }}>
+			<Box sx={{ m: 1, ps: 1, bgcolor: "white" }}>
 				<Button
 					onClick={handleDeleteRowsClick}
 					// sx={{ ml: 10 }}
@@ -152,15 +175,18 @@ function Supplier({ state }) {
 			</Box>
 			<Box sx={{ m: 1, bgcolor: "white", height: "calc(100%  - 200px) " }}>
 				<DataGrid
+					density="compact"
 					rows={items}
 					columns={columns}
 					pageSize={11}
+					editMode="cell"
 					rowsPerPageOptions={[11]}
 					checkboxSelection={true}
 					onSelectionModelChange={(newSelectionModel) => {
 						setSelectionModel(newSelectionModel);
 					}}
 					selectionModel={selectionModel}
+					footer={<div>dsa</div>}
 				/>
 			</Box>
 		</>

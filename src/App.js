@@ -15,6 +15,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "./routes/ListItems";
 import Routes from "./routes";
+import Login from "./pages/Login";
 
 const drawerWidth = 240;
 
@@ -152,5 +153,9 @@ function DashboardContent() {
 }
 
 export default function Dashboard() {
-	return <DashboardContent />;
+	if (sessionStorage.getItem("token")) {
+		return <DashboardContent />;
+	} else {
+		return <Login />;
+	}
 }
